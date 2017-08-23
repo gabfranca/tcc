@@ -1,0 +1,45 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Título da Página (Estrutura básica de uma página com HTML 5)</title>
+	<link href="css/seu-stylesheet.css" rel="stylesheet"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+ 
+<hgroup>
+	<h1>Business Game</h1>
+</hgroup>
+
+<form action="AutenficaUsuario.php" method="post" name="formLogin" onsubmit="return valida()" >
+	<div>
+		<label>Usuário</label>
+		<input type="text" id="usuario" name="login">
+	</div>
+	<div>
+		<label>Senha</label>
+		<input type="password" id="senha" name="senha">
+	</div>
+ <input type="submit" value="Login">
+</div>
+</form>
+	<div><a href="http://localhost:8090/tcc/novoUsuario.html">Crie uma conta</a>
+<span id="result"></span>
+
+</body>
+</html>
+<script>
+	function valida() {
+		alert("entrou");
+	 if (document.getElementById('usuario').value == "" || 
+	 document.getElementById('senha').value == "") {
+		alert("Preencha todos os Campos!"); 
+		return false;
+	 } else {
+		return  true;
+	 }
+	}
+</script>
