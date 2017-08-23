@@ -3,7 +3,7 @@
         require '../connection.php';
         require '../database.php'; 
         session_start();
-
+     $CD_USER=    $_SESSION['cdusuario'];
         $link =  DBConnect(); 
             $categoria = $_POST['categoria'];
             $opcao_correta = $_POST['op'];
@@ -14,7 +14,7 @@
             $resposta4 = $_POST['resposta4']; 
 
         $user = $_SESSION["cdusuario"];
-            $sql = "insert into pergunta values (null, '$pergunta',$categoria, '$resposta1', '$resposta2', '$resposta3', '$resposta4',$opcao_correta,1);";
+            $sql = "insert into pergunta values (null, '$pergunta',$categoria, '$resposta1', '$resposta2', '$resposta3', '$resposta4',$opcao_correta,$CD_USER);";
               
 
               	if(DBExecute($sql))

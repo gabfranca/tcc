@@ -1,9 +1,9 @@
 ﻿<?php
         require 'config.php';
-                          require 'connection.php';
-                          require 'database.php'; 
-                          session_start();  
-ValidaSessao();
+        require 'connection.php';
+        require 'database.php'; 
+       session_start();  
+      ValidaSessao();
 
 
 ?>
