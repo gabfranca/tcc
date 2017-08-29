@@ -28,7 +28,7 @@ if($retorno !=false)
   echo  $_SESSION["cdusuario"]. $_SESSION["login"]. $_SESSION['tpUser']. $_SESSION["nomeUser"];
 
   if ($_SESSION['tpUser']==1) {
-     $redirect = "ProfessorHome.php";
+     $redirect = "HomeProfessor.php";
         header("location:$redirect");
   } else {
        $redirect = "AlunoHome.php";

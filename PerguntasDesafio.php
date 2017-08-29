@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 <link rel="stylesheet" href="css/glyphicons.css" >
 
- 
+ <script src="script/myscript.js" ></script>
 <script src="script/jquery-3.2.1.slim.min.js"></script>
 <script src="script/popper.min.js" ></script>
 <script src="script/bootstrap.min.js" ></script>
@@ -59,12 +59,17 @@
 
 <div id="sidebar" class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-lg-2">
+      <div class="col-sm-3 col-lg-2">
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
-            <a href="#" class="list-group-item active">Perguntas</a>
+            <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
+            <a href="#" onclick="redirect('Perguntas');" class="list-group-item ">Perguntas</a>
+          <div class="sub-items" style="padding-left:10px;">
+                        <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item active">Desafio</a>
+                        <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item ">Materia</a>
+            </div>
             <a href="#" class="list-group-item">Configurações</a>
-            <a href="actions/EncerrarSessao.php" class="list-group-item">Encerar</a>
+            <a href="#" onclick="redirect('actions/EncerrarSessao');" class="list-group-item">Encerar</a>
           </div>
         </div><!--/span-->
       </div><!--/row-->
@@ -77,7 +82,7 @@
             <div class="container"  >
                 <!-- Your content goes here -->
                 <form id="formInserir" action="actions/InserirPergunta.php" method="post"    style="float:left;width: 40%;" > 
-                    <p class="mdl-typography--headline">Nova Pergunta  <i class="material-icons">description</i></p> 
+                    <p class="h4">Nova Pergunta </p> 
                     <label>Categoria:</label>
                     <?php
                   
