@@ -80,8 +80,7 @@
             <div class="container"  >
                    <form id="formInserir" action="actions/edit/PerguntaMateria.php" method="post"    style="float:left;width: 40%;" > 
                       <p class="h4">Editar </p> 
-               
-
+            
                       <?php
     $id=  $_GET['id'];
   // echo $id;
@@ -93,6 +92,7 @@
        $questao2 = $key["questao2"];
        $questao3 = $key["questao3"];
        $resposta = $key["somaresultado"];
+       $cdCategoria = $key["cd_categoria"];
        
    }
    
@@ -144,7 +144,9 @@ echo  '<input type="text" style="display:none" id="cdPergunta" name="cdPergunta"
                        <input type="text" value="<?php echo $resposta?>" name="resposta" readonly class="form-control" id="resposta" aria-describedby="sizing-addon2">
                     </div>
                       </br>
-                     <button id="sub"  class="btn btn-primary">Salvar</button>
+                      <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasMateria.php')"/>
+
+                     <button id="sub" style="float:right" class="btn btn-primary">Salvar</button>
 </br>
                      <span id="result"></span>
 
@@ -156,6 +158,20 @@ echo  '<input type="text" style="display:none" id="cdPergunta" name="cdPergunta"
 </body>
 
 </html>
+<?php
+echo '<script>
+$(document).ready(function() { 
+      
+     var obj = document.getElementById(\'cat\');
+    // obj.seletedIndex =  $cdCategoria;
+  
+     // alert(obj);
+        var teste ='.$cdCategoria.';
+        obj.selectedIndex = teste-1;
+     // alert(teste);
+});
+ </script>'
+ ?>
 
 <script >
 

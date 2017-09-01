@@ -1,11 +1,8 @@
 ﻿<?php
         require 'config.php';
         require 'connection.php';
-        require 'database.php'; 
-       session_start();  
-      
-
-
+        require 'database.php';
+       session_start();
 ?>
 <html>
 
@@ -13,7 +10,7 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 <link rel="stylesheet" href="css/glyphicons.css" >
 
- 
+
 <script src="script/jquery-3.2.1.slim.min.js"></script>
 <script src="script/popper.min.js" ></script>
 <script src="script/myscript.js" ></script>
@@ -21,24 +18,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<style> 
+<style>
+.pergunta{
+  border-bottom:black;
+  text-align: justify;
+}
 .container{
 
- 
+
 }
 #sidebar{
  margin-top:5%;
 }
- </style>   
+body { zoom: 100%; }
+ </style>
 
 <body>
-    
+
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top " style="">
      <a class="navbar-brand" href="#">
     <img src="images/logoTCC.png" width="30" height="30" class="d-inline-block align-top" alt="">
     Business Game  <?php $_SESSION["nomeUser"] ?>
   </a>
-     
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -60,7 +62,7 @@
 
 <div id="sidebar" class="container-fluid">
   <div class="row">
-      <div class="col-sm-3 col-lg-2">
+      <div class="col-md-4 col-lg-2">
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
@@ -74,22 +76,21 @@
           </div>
         </div><!--/span-->
       </div><!--/row-->
-   
-   
-    <div class="col-sm-9 col-lg-10">
+
+
+    <div class="col-sm-9 col-lg-10" style="padding-left: 5%;" >
             <div class="container"  >
-                   <form id="formInserir" action="actions/insert/PerguntaMateria.php" method="post"    style="float:left;width: 40%;" > 
-                      <p class="h3">Nova Pergunta </p> 
-               
+                   <form id="formInserir" action="actions/insert/PerguntaMateria.php" method="post"    style="float:left;width: 40%;" >
+                      <p class="h3">Nova Pergunta </p>
+
                       <label>Categoria:</label>
                     <?php
-                  
-                             $retorno = DBRead("categorias"); 
+                             $retorno = DBRead("categorias");
                             echo '<select id="cat" name="categoria" class="form-control">';
                               foreach ($retorno as $key ) {
                              echo '<option value="'.$key['cdCategoria'].'">'.$key['nmCategoria'].'</option>';
                                  }
-                             echo '</select>'; 
+                             echo '</select>';
                   ?>
 </br>
                       <div class="input-group">
@@ -134,20 +135,18 @@
                     </form>
                     <div id="divTable" style=" width: 60%;
     height: 90%;
-    overflow: scroll; padding-left:3%;">    
+    overflow: scroll; padding-left:3%;">
          <table  class="table table-hover">
             <thead>
             <tr>
-                <th  style="display:none">cdPergunta</td>
-                <th>Questão 1</th>
-                <th>Questão 2</th>
-                <th>Questão 3</th>
+                <th >ID</td>
+                <th>Questões</th>
                 <th>Resposta</th>
                 <th>EDITAR</td>
             </tr>
           </thead>
          <tbody>
-                    
+
            </div>
     </div>
     <?php
@@ -159,17 +158,17 @@
     {
     while($rows = mysqli_fetch_array($SELECT))
     {
-        echo "<div style=\"text-align:left\">
+        echo "<div>
         <tr>
-            <td style=\"display:none\">".$rows[0]."</td>
-            <td>".$rows[1]."</td>
-             <td>".$rows[3]."</td>
-            <td>".$rows[4]."</td>
-            <td>".$rows[5]."</td>
+            <td >".$rows[0]."</td>
+            <td>
+              <div class=\"pergunta\"><a class=\"h6\">(A)</a> ".$rows[1]."</div><hr>
+              <div class=\"pergunta\"><a class=\"h6\">(B)</a> ".$rows[2]."</div><hr>
+              <div class=\"pergunta\"><a class=\"h6\">(C)</a> ".$rows[3]."</div><hr>
 
-            <td><button onClick=\"edit(".$rows[0].")\" class=\"btn\">Editar</button></td>
-
-          
+            </td>
+            <td >".$rows[4]."</td>
+            <td><button onClick=\"edit(".$rows[0].")\" class=\"btn\">Editar</button>
         </tr>
         </div>
         ";
@@ -184,62 +183,61 @@ else
     ";
 }
 ?>
-
 </tbody>
 </table>
      </div>
   </div>
 </div>
 
-    
+
 </body>
 
 </html>
 
 <script >
     $("#sub").click( function() {
-if ( 
-    document.getElementById('questao1').value == "" 
+if (
+    document.getElementById('questao1').value == ""
     || document.getElementById('questao2').value == ""
     || document.getElementById('questao3').value == ""
     || document.getElementById('resposta').value == ""
     ) {
     alert("Preencha todos os campos!");
-   
+
    //  document.getElementById('result').text ="Preencha todos os campos!";
     return;
-    
+
 }
 
 
 
- $.post( $("#formInserir").attr("action"), 
-         $("#formInserir :input").serializeArray(), 
-         function(info){ $("#result").html(info); 
+ $.post( $("#formInserir").attr("action"),
+         $("#formInserir :input").serializeArray(),
+         function(info){ $("#result").html(info);
 
    });
- //clearInput(); 
+ //clearInput();
 location.reload();
 
-     document.getElementById('cat').selectedIndex = 0; 
+     document.getElementById('cat').selectedIndex = 0;
      document.getElementById('resposta').value = 0;
 
 
 }   );
- 
+
 $("#formInserir").submit( function() {
-  return false;	
+  return false;
 });
- 
+
 function clearInput() {
 	$("#formInserir :input").each( function() {
 	   $(this).val('');
-   
+
 	});
 
-  var ck1 = document.getElementById('ck1'); 
-  var ck2 = document.getElementById('ck2'); 
-  var ck3 = document.getElementById('ck3'); 
+  var ck1 = document.getElementById('ck1');
+  var ck2 = document.getElementById('ck2');
+  var ck3 = document.getElementById('ck3');
   ck1.checked =false;
   ck2.checked =false;
   ck3.checked =false;
@@ -249,11 +247,11 @@ function edit(num)
 {
     //alert(num);
     var newURL = window.location.protocol + "//" + window.location.host + "/tcc/PerguntasMateriaEditar.php?id="+ num;
- 
+
  window.location= newURL;
 
  //alert( newURL);
-} 
+}
 
 function redirect(param)
 {
@@ -267,10 +265,10 @@ function redirect(param)
 
 function calcula(checkbox)
 {
- // alert(soma); 
+ // alert(soma);
 var soma = document.getElementById('resposta').value;
 var s = soma;
-parseInt(soma); 
+parseInt(soma);
 //alert(soma);
     if (checkbox.checked) {
       soma= parseInt(s) + parseInt(checkbox.value);
@@ -278,7 +276,7 @@ parseInt(soma);
       soma= parseInt(s) - parseInt(checkbox.value);
     }
 
-    //var resp = document.getElementByID('resposta'); 
+    //var resp = document.getElementByID('resposta');
     //alert(soma);
     $("#resposta").val(soma);
 

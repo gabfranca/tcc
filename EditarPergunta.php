@@ -7,14 +7,14 @@
 
  </head>
  <body>
-    <form action="actions/SalvaPerguntaEditada.php" method="post" id="formSalvar">
+    <form action="actions/edit/PerguntaDesafio.php" method="post" id="formSalvar">
     <?php
         require 'config.php';
         require 'connection.php';
-        require 'database.php'; 
+        require 'database.php';
     $id=  $_GET['id'];
   // echo $id;
-   $result_data =  DBRead("pergunta", "where cdPergunta = {$id}"); 
+   $result_data =  DBRead("pergunta", "where cdPergunta = {$id}");
 
    foreach ($result_data as $key) {
        $cdPergunta = $key["cdPergunta"];
@@ -25,17 +25,17 @@
        $dsResposta3 = $key["dsResposta3"];
        $dsResposta4 = $key["dsResposta4"];
        $correta = $key["correta"];
-       
+
    }
-  
-         $retorno = DBRead("categorias"); 
+
+         $retorno = DBRead("categorias");
                             echo '<select id="cat" name="categoria">';
                               foreach ($retorno as $key ) {
                              echo '<option value="'.$key['cdCategoria'].'" >'.$key['nmCategoria'].'</option>';
                                  }
                              echo '</select>';
-       
-        
+
+
     ?>
     <select id="op" name="op">
          <option  value="1" <?php if($correta == '1'){echo("selected");}?>>A</option>
@@ -48,11 +48,11 @@
 <?php
   $id=  $_GET['id'];
 echo  '<input type="text" id="cdPergunta" name="cdPergunta" value="'.$id.'">';
-echo   '<input type="text" id="pergunta" name="pergunta" value="'.$dsPergunta.'" >'; 
-echo   '<input type="text" id="resp1" name="resp1" value="'.$dsResposta1.'" >'; 
-echo   '<input type="text" id="resp2" name="resp2" value="'.$dsResposta2.'" >'; 
-echo   '<input type="text" id="resp3" name="resp3" value="'.$dsResposta3.'" >'; 
-echo   '<input type="text" id="resp4" name="resp4" value="'.$dsResposta4.'" >'; 
+echo   '<input type="text" id="pergunta" name="pergunta" value="'.$dsPergunta.'" >';
+echo   '<input type="text" id="resp1" name="resp1" value="'.$dsResposta1.'" >';
+echo   '<input type="text" id="resp2" name="resp2" value="'.$dsResposta2.'" >';
+echo   '<input type="text" id="resp3" name="resp3" value="'.$dsResposta3.'" >';
+echo   '<input type="text" id="resp4" name="resp4" value="'.$dsResposta4.'" >';
 ?>
 <button id="sub" >Save</button>
 </form>
@@ -63,11 +63,11 @@ echo   '<input type="text" id="resp4" name="resp4" value="'.$dsResposta4.'" >';
 <?php
 
 echo '<script>
-$(document).ready(function() { 
-      
+$(document).ready(function() {
+
      var obj = document.getElementById(\'cat\');
     // obj.seletedIndex =  $cdCategoria;
-  
+
      // alert(obj);
         var teste ='.$cdCategoria.';
         obj.selectedIndex = teste-1;
@@ -79,39 +79,38 @@ $(document).ready(function() {
  <script>
          $("#sub").click( function() {
              alert("entrou");
-if ( 
-    document.getElementById('pergunta').value == "" 
+if (
+    document.getElementById('pergunta').value == ""
     || document.getElementById('resp1').value == ""
     || document.getElementById('resp2').value == ""
     || document.getElementById('resp3').value == ""
     || document.getElementById('resp4').value == ""
     ) {
     alert("Preencha todos os campos!");
-   
+
      document.getElementById('result').text ="Preencha todos os campos!";
     return;
-    
+
 }
 
- $.post( $("#formSalvar").attr("action"), 
-         $("#formSalvar :input").serializeArray(), 
-         function(info){ $("#result").html(info); 
+ $.post( $("#formSalvar").attr("action"),
+         $("#formSalvar :input").serializeArray(),
+         function(info){ $("#result").html(info);
 
    });
- //clearInput(); 
+ //clearInput();
 // location.reload();
 }   );
 
 
 $("#formSalvar").submit( function() {
-  return false;	
+  return false;
 });
 
 function teste()
 {
     var a = "http://"+window.location.hostname;
-    
+
     alert(a);
 }
- </script>    
-  
+ </script>

@@ -1,7 +1,7 @@
   <?php 
-        require '../config.php';
-        require '../connection.php';
-        require '../database.php'; 
+        require '../../config.php';
+        require '../../connection.php';
+        require '../../database.php'; 
         session_start();
 
         $link =  DBConnect(); 
@@ -24,7 +24,7 @@
                         dsResposta4 = '$resposta4',
                         correta = $opcao_correta
                         WHERE cdPergunta =  $cdPergunta ";
-//echo $query;
+echo $query;
               	if(DBExecute($query))
 		  echo "Pergunta salva com sucesso!";
 		else

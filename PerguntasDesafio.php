@@ -77,15 +77,12 @@
    
     <div class="col-sm-9 col-lg-10">
    
-
- 
             <div class="container"  >
                 <!-- Your content goes here -->
                 <form id="formInserir" action="actions/InserirPergunta.php" method="post"    style="float:left;width: 40%;" > 
-                    <p class="h4">Nova Pergunta </p> 
+                    <p class="h4">Nova Pergunta Desafio </p> 
                     <label>Categoria:</label>
                     <?php
-                  
                              $retorno = DBRead("categorias"); 
                             echo '<select id="cat" name="categoria" class="form-control">';
                               foreach ($retorno as $key ) {
@@ -106,11 +103,6 @@
                  <label class="mdl-textfield__label" for="sample5">Enunciado da questão...</label>
                  <textarea id="pergunta" name="pergunta" class="form-control" type="text" rows= "2" id="sample5" required="required" ></textarea>
             </div>
- </br>   
- 
-
-
-
              <div class="form-group" >
                  <label  for="sample5">Questão A...</label>
                  <textarea id="resp1" name="resposta1" class="form-control" type="text" rows= "1" id="sample5" required="required" ></textarea>
@@ -130,12 +122,8 @@
                  <textarea id="resp4" name="resposta4" class="form-control" type="text" rows= "1" id="sample5" required="required" ></textarea>
                  
             </div>
-  
-                    <button class="btn btn-default">
-                        CANCELAR
-                    </button>
 
-                    <button id="sub"  class="btn btn-primary">Save</button>
+                    <button id="sub"  style="float:right" class="btn btn-primary">Salvar</button>
 
             
                 </form>
@@ -147,13 +135,8 @@
          <table  class="table table-hover">
             <thead>
             <tr>
-                <th  style="display:none">cdPergunta</td>
+                <th>ID</td>
                 <th>PERGUNTA</th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <th>CORRETA</td>
                 <th>EDITAR</td>
             </tr>
           </thead>
@@ -170,16 +153,9 @@
     {
         echo "<div style=\"text-align:left\">
         <tr>
-            <td style=\"display:none\">".$rows[0]."</td>
+            <td>".$rows[0]."</td>
             <td>".$rows[1]."</td>
-             <td>".$rows[3]."</td>
-            <td>".$rows[4]."</td>
-            <td>".$rows[5]."</td>
-            <td>".$rows[6]."</td>
-            <td>".$rows[7]."</td>
             <td><button onClick=\"edit(".$rows[0].")\" class=\"btn\">Editar</button></td>
-
-          
         </tr>
         </div>
         ";
@@ -258,9 +234,9 @@ function clearInput() {
 function edit(num)
 {
     //alert(num);
-    var newURL = window.location.protocol + "//" + window.location.host + "/tcc/editarPergunta.php?id="+ num;
+    var newURL = window.location.protocol + "//" + window.location.host + "/tcc/PerguntasDesafioEditar.php?id="+ num;
  
- window.open(newURL, '_blank');
+ window.location = newURL;
 
  //alert( newURL);
 }

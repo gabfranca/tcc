@@ -29,6 +29,7 @@
 #sidebar{
  margin-top:5%;
 }
+body { zoom: 100%; }
  </style>   
 
 <body>
@@ -60,7 +61,7 @@
 
 <div id="sidebar" class="container-fluid">
   <div class="row">
-        <div class="col-sm-3 col-lg-2">
+        <div class="col-sm-3 col-lg-3">
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item active ">Início</a>
