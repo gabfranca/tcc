@@ -64,7 +64,7 @@
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
-            <a href="#" onclick="redirect('Perguntas');" class="list-group-item ">Perguntas</a>
+            <a href="#" onclick="redirect('Grupos');" class="list-group-item ">Perguntas</a>
           <div class="sub-items" style="padding-left:10px;">
                         <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item ">Desafio</a>
                         <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item active">Materia</a>
@@ -144,7 +144,7 @@ echo  '<input type="text" style="display:none" id="cdPergunta" name="cdPergunta"
                        <input type="text" value="<?php echo $resposta?>" name="resposta" readonly class="form-control" id="resposta" aria-describedby="sizing-addon2">
                     </div>
                       </br>
-                      <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasMateria.php')"/>
+                      <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasMateria')"/>
 
                      <button id="sub" style="float:right" class="btn btn-primary">Salvar</button>
 </br>

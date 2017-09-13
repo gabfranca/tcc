@@ -114,6 +114,11 @@
               header('Location: http://localhost:8090/tcc/login');
          }
     }
-
+    function finalizaSessao($cd_usuario)
+    {
+        $sql =  "update sessao set ativo = 0 where cd_usuario = {$cd_usuario}"; 
+        $result = DBExecute($sql);  
+        return $result;
+    }
 
 ?>

@@ -66,7 +66,7 @@ body { zoom: 100%; }
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
-            <a href="#" onclick="redirect('Perguntas');" class="list-group-item ">Perguntas</a>
+            <a href="#" onclick="redirect('Grupos');" class="list-group-item ">Perguntas</a>
           <div class="sub-items" style="padding-left:10px;">
                         <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item ">Desafio</a>
                         <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item active">Materia</a>
@@ -81,7 +81,7 @@ body { zoom: 100%; }
     <div class="col-sm-9 col-lg-10" style="padding-left: 5%;" >
             <div class="container"  >
                    <form id="formInserir" action="actions/insert/PerguntaMateria.php" method="post"    style="float:left;width: 40%;" >
-                      <p class="h3">Nova Pergunta </p>
+                      <p class="h3">Nova Pergunta Materia </p>
 
                       <label>Categoria:</label>
                     <?php

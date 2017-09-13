@@ -1,4 +1,4 @@
-﻿<?php
+<?php
         require 'config.php';
         require 'connection.php';
         require 'database.php'; 
@@ -13,10 +13,10 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 <link rel="stylesheet" href="css/glyphicons.css" >
 
- 
+ <script src="script/myscript.js" ></script>
+ <script src="script/jsonResults.js" ></script>
 <script src="script/jquery-3.2.1.slim.min.js"></script>
 <script src="script/popper.min.js" ></script>
-<script src="script/myscript.js" ></script>
 <script src="script/bootstrap.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -29,10 +29,9 @@
 #sidebar{
  margin-top:5%;
 }
-body { zoom: 100%; }
  </style>   
 
-<body>
+<body onload="carregaPerguntasPorGrupo(<?php  echo ($_GET["id"])?>)">
     
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top " style="">
      <a class="navbar-brand" href="#">
@@ -61,11 +60,11 @@ body { zoom: 100%; }
 
 <div id="sidebar" class="container-fluid">
   <div class="row">
-        <div class="col-sm-3 col-lg-3">
+    <div class="col-sm-3 col-lg-2">
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
-            <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item active ">Início</a>
-            <a href="#" onclick="redirect('Grupos');" class="list-group-item  ">Perguntas</a>
+            <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
+            <a href="#" onclick="redirect('Perguntas');" class="list-group-item active ">Perguntas</a>
           <div class="sub-items" style="padding-left:10px;">
                         <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item ">Desafio</a>
                         <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item ">Materia</a>
@@ -77,15 +76,41 @@ body { zoom: 100%; }
       </div><!--/row-->
    
    
-    <div class="col-sm-9 col-lg-10">
+    <div>
    
-
- 
-            <div class="container"  >
+            <div  style="padding-left: 4%;" >
                 <!-- Your content goes here -->
-         <input type="button" onclick="teste()" value="testando">
+                <section>
+			<h3>Questões do Grupo </h3>
+
+      <button type="button" onclick="redirect('Grupos')" class="btn btn-link">Voltar</button>
+
+      <table  id="minhaTabela"  class="table table-hover" style="width:40%">
+            <thead>
+            <tr>
+                <th >ID</td>
+                <th >Ordem</td>
+                <th>Questões</th>
+                <th>Resposta</th>
+            </tr>
+          </thead>
+         <tbody>
+		</section>           
            </div>
-     
+           <div style="float:left;width:40%; height:50%; color:blue">
+           <table  id="minhaTabela"  class="table table-hover" style="width:40%">
+            <thead>
+            <tr>
+                <th >ID</td>
+                <th>Questões</th>
+                <th>Resposta</th>
+                <th>Add</th>
+            </tr>
+          </thead>
+         <tbody>
+           </div>
+           
+
     </div>
      </div>
   </div>
@@ -152,13 +177,4 @@ function edit(num)
  //alert( newURL);
 }
 
-function redirect(param)
-{
-   // alert('teste');
-
-    var url = getCurrentPath();
-    var newURL = url +"/tcc/" +param;
-   // alert(newURL);
-   window.location = newURL;
-}
 </script>

@@ -15,7 +15,7 @@
 
             $user = $_SESSION["cdusuario"];
 
-           $sql = "update perguntaMateria set cd_categoria= '$cat', questao1 = '$questao1', questao2 = '$questao2' ,  questao3 = '$questao3',  somaresultado = $resposta,cd_categoria = $cat WHERE cd_pergunta = $cd_pergunta;";
+           $sql = "update perguntaMateria set cd_categoria= $cat, questao1 = '$questao1', questao2 = '$questao2' ,  questao3 = '$questao3',  somaresultado = $resposta,cd_categoria = $cat WHERE cd_pergunta = $cd_pergunta;";
             
 
               

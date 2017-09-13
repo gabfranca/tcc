@@ -25,14 +25,13 @@ if($retorno !=false)
             $_SESSION["nomeUser"] = $ret['nmUsuario'];
         }
   
-  echo  $_SESSION["cdusuario"]. $_SESSION["login"]. $_SESSION['tpUser']. $_SESSION["nomeUser"];
+  //echo  $_SESSION["cdusuario"]. $_SESSION["login"]. $_SESSION['tpUser']. $_SESSION["nomeUser"];
 
   if ($_SESSION['tpUser']==1) {
      $redirect = "HomeProfessor.php";
         header("location:$redirect");
   } else {
-       $redirect = "AlunoHome.php";
-     //   header("location:$redirect");
+    header('Location: http://localhost:8090/tcc/login');
   }
   GravaSessao($_SESSION["cdusuario"]);
 }

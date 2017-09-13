@@ -63,7 +63,7 @@
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
-            <a href="#" onclick="redirect('Perguntas');" class="list-group-item ">Perguntas</a>
+            <a href="#" onclick="redirect('Grupos');" class="list-group-item ">Perguntas</a>
           <div class="sub-items" style="padding-left:10px;">
                         <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item active">Desafio</a>
                         <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item ">Materia</a>
@@ -138,7 +138,7 @@
                  <textarea id="resp4" name="resp4" class="form-control" type="text" rows= "1" id="sample5" required="required" ><?php echo $dsResposta4 ?></textarea>
 
             </div>
-            <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasDesafio.php')"/>
+            <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasDesafio')"/>
             <button id="sub" style="float:right" class="btn btn-primary" >Salvar</button>
                     <span id="result"></span>
                 </form>

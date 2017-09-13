@@ -63,7 +63,7 @@
           <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
           <div class="list-group" style="width: 260px; position: fixed;">
             <a href="#" onclick="redirect('HomeProfessor');" class="list-group-item ">Início</a>
-            <a href="#" onclick="redirect('Perguntas');" class="list-group-item active ">Perguntas</a>
+            <a href="#" onclick="redirect('Grupos');" class="list-group-item active ">Perguntas</a>
           <div class="sub-items" style="padding-left:10px;">
                         <a href="#" onclick="redirect('PerguntasDesafio');" class="list-group-item ">Desafio</a>
                         <a href="#" onclick="redirect('PerguntasMateria');" class="list-group-item ">Materia</a>
