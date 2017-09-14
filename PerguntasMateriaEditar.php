@@ -31,7 +31,7 @@
 }
  </style>   
 
-<body>
+<body onload="loadGrupos('<?php echo $_GET['id']; ?>')">
     
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top " style="">
      <a class="navbar-brand" href="#">
@@ -146,12 +146,39 @@ echo  '<input type="text" style="display:none" id="cdPergunta" name="cdPergunta"
                       </br>
                       <input type="button" class="btn btn-link" value="Voltar" onMouseOver="this.style.cursor='pointer'" onclick="redirect('PerguntasMateria')"/>
 
+
                      <button id="sub" style="float:right" class="btn btn-primary">Salvar</button>
 </br>
                      <span id="result"></span>
 
                     </form>
+                    
   </div>
+  </br>
+ <div style="float: left; margin-left: 2%; width: 40%;">
+                     <?php
+                             $retorno = DBRead("grupo");
+                            echo '<select id="grupo" name="grupos"  style="width:65%; margin-left:2%; float:left" class="form-control">';
+                              foreach ($retorno as $key ) {
+                             echo '<option value="'.$key['cdGrupo'].'">'.$key['nm_grupo'].'</option>';
+                                 }
+                             echo '</select>';
+                  ?>
+                   <input type="button"  class="btn btn-default" onClick="getGrupoId(<?php echo $cdPergunta ?>)" style="margin-left:2%" value="add"></input>
+                </br>
+                   <table class="table table-hover" id="minhaTabela"  style="width:80%; margin-left:2%;">
+                <thead>
+            <tr>
+                <th >ID</td>
+                <th>Grupo</th>
+                <th>Remover</th>
+                </tr>
+          </thead>
+          <tbody>
+				</tbody>
+                </table>
+                </div
+     
 </div>
 
     
@@ -296,5 +323,147 @@ var ck3 = document.getElementById('ck3');
 
  });
 
+function getGrupoId(pergunta)
+{
+ // alert(pergunta);
+  //alert( $("#grupo").val());
+ var grupo = $("#grupo").val();
+ AddPerguntaGrupo(grupo,pergunta);
+
+}
+
+function AddPerguntaGrupo(cdgrupo, cdpergunta){
+	//variáveis
+	var itens = "";
+    var url = window.location.protocol + "//" + window.location.host+'/api/perguntasgrupo/add?cdgrupo='+cdgrupo+'&cdpergunta='+cdpergunta;
+   // alert(url);
+    //Capturar Dados Usando Método AJAX do jQuery
+    $.ajax({
+	    url: url,
+	    cache: false,
+	    dataType: "json",
+	    beforeSend: function() {
+		   // $("h2").html("Carregando..."); //Carregando
+	    },
+        error: function (error) {
+          //  alert(JSON.stringify(error));
+            $("h2").html(error);
+        },
+	    success: function(retorno) {
+            alert(retorno.message);
+		    if(retorno.success){
+                $("h2").html(retorno.message);
+                
+		    }
+		    else{
+              // alert( retorno.message);
+               location.reload();
+         //       retorno = retorno.data;
+			    //Laço para criar linhas da tabela
+			//    for(var i = 0; i<retorno.length; i++){
+			//	    itens += "<tr>";
+		//		    itens += "<td>" + retorno[i].cdGrupo + "</td>";
+         //           itens += "<td>" + retorno[i].nm_grupo + "</td>";
+         //           itens += "<td> <button type=\"button\" onMouseOver=\"this.style.cursor='pointer'\" onclick=\"redirect('EditarGrupos?id="+retorno[i].cdGrupo+"')\" class=\"btn btn-link\">Visualizar</button></td>";
+		//		    itens += "</tr>";
+		//	    }
+			    //Preencher a Tabela
+			  //  $("#minhaTabela tbody").html(itens);
+		    }
+	    }
+    });
+}
+
+
+function loadGrupos(id){
+	//variáveis
+	var itens = "";
+    var url = window.location.protocol + "//" + window.location.host+'/api/perguntasgrupo/getbypergunta?id='+id;
+    //alert(url);
+    //Capturar Dados Usando Método AJAX do jQuery
+    $.ajax({
+	    url: url,
+	    cache: false,
+	    dataType: "json",
+	    beforeSend: function() {
+		   // $("h2").html("Carregando..."); //Carregando
+	    },
+        error: function (error) {
+          //  alert(JSON.stringify(error));
+            $("h2").html(error);
+        },
+	    success: function(retorno) {
+            //alert(retorno.message);
+		    if(retorno.success){
+			    $("h2").html(retorno.message);
+		    }
+		    else{
+                retorno = retorno.data;
+			    //Laço para criar linhas da tabela
+			    for(var i = 0; i<retorno.length; i++){
+           // alert(retorno[i].cdGrupo);
+            itens += "<tr>";
+            //itens += "<td>" + retorno[i].cd_perguntagrupo + "</td>";
+				    itens += "<td>" + retorno[i].cdGrupo + "</td>";
+                    itens += "<td>" + retorno[i].nm_grupo + "</td>";
+                    itens += "<td> <button type=\"button\" onMouseOver=\"this.style.cursor='pointer'\" onclick=\"RemoveGrupo('"+retorno[i].cd_perguntagrupo +"')\" class=\"btn btn-link\">Remover</button></td>";
+				    itens += "</tr>";
+          }
+         // alert(itens);
+			    //Preencher a Tabela
+			    $("#minhaTabela tbody").html(itens);
+         //location.reload();
+
+			    //Limpar Status de Carregando
+			   // $("h2").html("Carregado");
+		    }
+	    }
+    });
+}
+function redirectAPI(param)
+{
+   // alert('teste');
+
+    var url = getCurrentPath();
+    var newURL = url +"/api/" +param;
+   // alert(newURL);
+   window.location = newURL;
+}
+
+function RemoveGrupo(id){
+	//variáveis
+	var itens = "";
+    var url = window.location.protocol + "//" + window.location.host+'/api/perguntasgrupo/remove?id='+id;
+    //alert(url);
+    //Capturar Dados Usando Método AJAX do jQuery
+    $.ajax({
+	    url: url,
+	    cache: false,
+	    dataType: "json",
+	    beforeSend: function() {
+		   // $("h2").html("Carregando..."); //Carregando
+	    },
+        error: function (error) {
+          //  alert(JSON.stringify(error));
+            $("h2").html(error);
+        },
+	    success: function(retorno) {
+            //alert(retorno.message);
+		    if(retorno.success){
+			    $("h2").html(retorno.message);
+		    }
+		    else{
+              alert(retorno = retorno.message);
+              location.reload();
+			    //Preencher a Tabela
+			   // $("#minhaTabela tbody").html(itens);
+         //location.reload();
+
+			    //Limpar Status de Carregando
+			   // $("h2").html("Carregado");
+		    }
+	    }
+    });
+}
 
 </script>

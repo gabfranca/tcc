@@ -128,7 +128,22 @@ body { zoom: 100%; }
                        <input type="text" value="0" name="resposta" readonly class="form-control" id="resposta" aria-describedby="sizing-addon2">
                     </div>
                       </br>
-                     <button id="sub"  class="btn btn-primary">Salvar</button>
+                   
+                      <?php
+                             $retorno = DBRead("grupo");
+                            echo '<select id="grupo" name="grupo"  style="width:100%; float:left" class="form-control">';
+                              foreach ($retorno as $key ) {
+                             echo '<option value="'.$key['cdGrupo'].'">'.$key['nm_grupo'].'</option>';
+                                 }
+                             echo '</select>';
+                  ?>
+                
+                </br></br>
+                     <button id="sub"  class="btn btn-primary">Salvar </button>
+                     </br>
+          
+              
+                 
 </br>
                      <span id="result"></span>
 

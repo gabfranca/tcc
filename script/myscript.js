@@ -13,3 +13,14 @@ function redirect(param)
    // alert(newURL);
    window.location = newURL;
 }
+
+
+function redirectAPI(param)
+{
+   // alert('teste');
+
+    var url = getCurrentPath();
+    var newURL = url +"/api/" +param;
+   // alert(newURL);
+   window.location = newURL;
+}

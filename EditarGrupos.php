@@ -76,16 +76,20 @@
       </div><!--/row-->
    
    
-    <div>
+    <div  class="col-sm-9 col-lg-10" style="float:left">
    
-            <div  style="padding-left: 4%;" >
+            <div class="container-fluid" style="padding-left: 4%;" >
                 <!-- Your content goes here -->
                 <section>
 			<h3>Questões do Grupo </h3>
 
       <button type="button" onclick="redirect('Grupos')" class="btn btn-link">Voltar</button>
 
-      <table  id="minhaTabela"  class="table table-hover" style="width:40%">
+			<!--Área que mostrará carregando-->
+			<h2></h2>
+			<!--Tabela-->
+
+      <table  id="minhaTabela"  class="table table-hover" style="width:80%">
             <thead>
             <tr>
                 <th >ID</td>
@@ -97,20 +101,6 @@
          <tbody>
 		</section>           
            </div>
-           <div style="float:left;width:40%; height:50%; color:blue">
-           <table  id="minhaTabela"  class="table table-hover" style="width:40%">
-            <thead>
-            <tr>
-                <th >ID</td>
-                <th>Questões</th>
-                <th>Resposta</th>
-                <th>Add</th>
-            </tr>
-          </thead>
-         <tbody>
-           </div>
-           
-
     </div>
      </div>
   </div>
