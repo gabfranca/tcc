@@ -23,7 +23,10 @@
     <div class="container">
 
       <form class="form-signin" action="AutenficaUsuario.php" method="post" name="formLogin" onsubmit="return valida();">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <div class="text-center" style="width: 280px; height: 140px;">
+          <img src="images/logotcc.png"  style="width: 180px;" alt="..."/>
+      </div>
+        <h2 class="form-signin-heading text-center">Business Game</h2>
         <label for="usuario" class="sr-only">Login</label>
         <input name="login" type="text" id="usuario" class="form-control"  placeholder="Login"   autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
@@ -59,8 +62,8 @@
 				alert("Preencha todos os Campos!");
 				return false;
 			} else {
-				if (usuario.length != 6) {
-					alert("Login deve conter 6 caracteres!");
+				if (usuario.length < 6) {
+					alert("Login deve conter pelo menos 6 caracteres!");
 					return false;
 				}
 				else if (senha.length != 6) {

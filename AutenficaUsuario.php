@@ -2,18 +2,18 @@
 
         require 'config.php';
         require 'connection.php';
-        require 'database.php'; 
+        require 'database.php';
 
 
 $login = $_POST['login'];
-$senha = $_POST['senha']; 
+$senha = $_POST['senha'];
 
 if (session_status() == PHP_SESSION_ACTIVE) {
   session_destroy();
 }
 
 
-  $retorno = ValidaLogin($login, $senha); 
+  $retorno = ValidaLogin($login, $senha);
 
 if($retorno !=false)
 {
@@ -24,11 +24,11 @@ if($retorno !=false)
             $_SESSION['tpUser'] = $ret['cd_tipoUsuario'];
             $_SESSION["nomeUser"] = $ret['nmUsuario'];
         }
-  
+
   //echo  $_SESSION["cdusuario"]. $_SESSION["login"]. $_SESSION['tpUser']. $_SESSION["nomeUser"];
 
   if ($_SESSION['tpUser']==1) {
-     $redirect = "HomeProfessor.php";
+     $redirect = "Home";
         header("location:$redirect");
   } else {
     header('Location: http://localhost:8090/tcc/login');

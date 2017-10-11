@@ -1,8 +1,8 @@
 <?php
         require '../config.php';
         require '../connection.php';
-        require '../database.php'; 
-       session_start();  
+        require '../database.php';
+       session_start();
           if (session_status() == PHP_SESSION_ACTIVE) {
            session_destroy();
            finalizaSessao($_SESSION['cdusuario']);
