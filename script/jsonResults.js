@@ -74,7 +74,7 @@ function carregaPerguntasPorGrupo(id){
 							for(var i = 0; i<retorno.length; i++){
 
         itens += "<div class=\"card\" style=\"width: 30rem; height:26rem; margin:10px; padding-left:1px; float:left;\"><div class=\"card-body card-header\"><h4 class=\"card-title\">Posição: "+retorno[i].id_grupo+ "</br>Resposta: "+ retorno[i].somaresultado+" </h4>";
-    itens += "</div style=\"width:100%\"> <ul class=\"list-group list-group-flush\"> <li class=\"list-group-item\">(1) "+retorno[i].questao1+"</li> <li class=\"list-group-item\">(2) "+retorno[i].questao2+"</li>  <li class=\"list-group-item\">(3) "+retorno[i].questao3+"</li> </ul>";
+    itens += "</div style=\"width:100%\"> <ul class=\"list-group list-group-flush\"> <li class=\"list-group-item\"><b>(1)</b> "+retorno[i].questao1+"</li> <li class=\"list-group-item\"><b>(2)</b> "+retorno[i].questao2+"</li>  <li class=\"list-group-item\"><b>(4)</b> "+retorno[i].questao3+"</li> </ul>";
      itens += "<div class=\"card-body\">";
     itens += "</div> </div>";
 
@@ -175,5 +175,38 @@ function AddPerguntaGrupo(cdgrupo, cdpergunta){
 			  //  $("#minhaTabela tbody").html(itens);
 		    }
 	    }
+    });
+}
+
+
+
+function AddGrupo(cd_usuario, nome){
+	//variáveis
+	if (nome=="") {
+		alert("Preencha o campo de nome do Grupo!");
+		return;
+	}
+	var itens = "";
+    var url = window.location.protocol + "//" + window.location.host+'/api/grupo/criar?id='+cd_usuario+'&nm_grupo='+nome;
+   // alert(url);
+    //Capturar Dados Usando Método AJAX do jQuery
+    $.ajax({
+	    url: url,
+	    cache: false,
+	    dataType: "json",
+	    beforeSend: function() {
+		   // $("h2").html("Carregando..."); //Carregando
+	    },
+        error: function (error) {
+          //  alert(JSON.stringify(error));
+              alert("Erro ao Salvar!");
+									location.reload();
+        },
+	    success: function(retorno) {
+							alert("Salvo com sucesso!");
+									location.reload();
+		    }
+
+
     });
 }

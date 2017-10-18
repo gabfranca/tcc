@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>Business Game - Editar Meu Grupo</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -72,14 +72,26 @@
 </br>
 </br>
 
+<table class="table table-hover" style="width:90%">
+  <tbody>
+    <tr>
+      <td>Contém: <?php echo getQtPerguntas($_GET["id"]); ?></td>
+      <td>Limite: 50</td>
+      <td>Restam: <?php echo (50 -  getQtPerguntas($_GET["id"])) ; ?></td>
+    </tr>
+  </tbody>
+</table>
+<div class="progress" style="width:90%">
+<div class="progress-bar bg-success" role="progressbar" style="width: <?php echo getPorcentagemPerguntas($_GET["id"])?>%" aria-valuenow="<?php echo getPorcentagemPerguntas($_GET["id"])?>" aria-valuemin="0" aria-valuemax="100"><?php echo getPorcentagemPerguntas($_GET["id"])."%"?></div>
+</div>
+</div>
 
 
 
-
-<table  id="minhaTabela"  class="table table-hover" style="width:100%;text-align: left;">
+<table  id="minhaTabela"  class="table table-hover" style="width:92%;text-align: left;">
     <thead>
     <tr>
-        <th >ID</td>
+        <th >Perguntas</td>
     </tr>
   </thead>
  <tbody>
@@ -90,7 +102,25 @@
 </div>
 </div>
 
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>

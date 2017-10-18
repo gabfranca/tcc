@@ -63,9 +63,17 @@
 
     <div class="container">
       <form id="formInserir" action="actions/insert/PerguntaMateria.php" method="post" style=" width:90%;"   >
-         <p class="h3">Nova Pergunta Materia </p>
-
-         <label>Categoria:</label>
+         <p class="h3">Nova Pergunta Materia </p></br>
+         <label for="grupo">Grupo:</label>
+         <?php
+                 $retorno = DBRead("grupo");
+                echo '<select id="grupo" name="grupo"  style="width:100%; float:left" class="form-control">';
+                  foreach ($retorno as $key ) {
+                 echo '<option value="'.$key['cdGrupo'].'">'.$key['nm_grupo'].'</option>';
+                     }
+                 echo '</select>';
+      ?></br>
+      <label for="cat">Categoria:</label>
        <?php
                 $retorno = DBRead("categorias");
                echo '<select id="cat" name="categoria" class="form-control">';
@@ -197,7 +205,7 @@
 
       });
       //clearInput();
-      location.reload();
+      //location.reload();
 
       document.getElementById('cat').selectedIndex = 0;
       document.getElementById('resposta').value = 0;
@@ -240,7 +248,7 @@
       var url = getCurrentPath();
       var newURL = url +"/tcc/" +param;
       // alert(newURL);
-      window.location = newURL;
+    //  window.location = newURL;
       }
 
       function calcula(checkbox)

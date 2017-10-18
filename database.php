@@ -3,14 +3,14 @@
     //executa querys
     function DBExecute($query)
     {
-        $link = DBConnect(); 
+        $link = DBConnect();
         $result = @mysqli_query($link, $query) or die(mysqli_error($link));
 
         DBClose($link);
         return $result;
     }
 
-    //Grava Registros 
+    //Grava Registros
     function DBCreate($table, array $data)
     {
         $fields = implode(', ',array_keys($data));
@@ -18,7 +18,7 @@
         $query = "INSERT INTO {$table} VALUES({$values});";
    //   echo $query;
        return DBExecute ($query);
-    } 
+    }
 
 
 
@@ -28,7 +28,7 @@
         $params = ($params)? "{$params}":null;
         $query = "select {$fields} from {$table} {$params}";
        $result = DBExecute($query);
-      
+
       //  echo $query;
         if(!mysqli_num_rows($result))
         return false;
@@ -58,25 +58,25 @@
  //PEGA O ID DO ULTIMO INSERT EM DETERMINADA TABELA
     function getLastID($tabela, $campo)
     {
-       $query = "select {$campo} FROM $tabela ORDER BY $campo DESC LIMIT 1;"; 
-        $link = DBConnect(); 
+       $query = "select {$campo} FROM $tabela ORDER BY $campo DESC LIMIT 1;";
+        $link = DBConnect();
         $result = @mysqli_query($link, $query) or die(mysqli_error($link));
 
-      
+
            foreach ($result as $ret) {
            $id =  $ret["$campo"];
         }
          DBClose($link);
         return $id;
     }
-  
+
   function getPerguntaByID($id)
     {
-       $query = "select * FROM pergunta where cdPergunta = {$id};"; 
-        $link = DBConnect(); 
+       $query = "select * FROM pergunta where cdPergunta = {$id};";
+        $link = DBConnect();
         $result = @mysqli_query($link, $query) or die(mysqli_error($link));
 
-      
+
            foreach ($result as $ret) {
            $id =  $ret["$campo"];
         }
@@ -88,8 +88,8 @@
 
     function GravaSessao($cdUsuario)
     {
-        $query = "insert into sessao values (null, $cdUsuario, true);"; 
-        $link = DBConnect(); 
+        $query = "insert into sessao values (null, $cdUsuario, true);";
+        $link = DBConnect();
         $result = @mysqli_query($link, $query) or die(mysqli_error($link));
         DBClose($link);
         return $result;
@@ -97,10 +97,10 @@
 
     function ValidaLogin($login, $senha)
     {
-        $query = "select * from usuario where nmlogin = '$login' and password = $senha limit 1;"; 
-        $link = DBConnect(); 
+        $query = "select * from usuario where nmlogin = '$login' and password = $senha limit 1;";
+        $link = DBConnect();
         $result = @mysqli_query($link, $query) or die(mysqli_error($link));
-     
+
           if(!mysqli_num_rows($result))
         return false;
         else
@@ -110,7 +110,7 @@
         }
         return $data;
         DBClose($link);
-    } 
+    }
 
     function InserirPergunta($pergunta,$cdCategoria,$resposta1,$resposta2,$resposta3,$resposta4,$opcao_correta, $user)
     {
@@ -131,9 +131,22 @@
     }
     function finalizaSessao($cd_usuario)
     {
-        $sql =  "update sessao set ativo = 0 where cd_usuario = {$cd_usuario}"; 
-        $result = DBExecute($sql);  
+        $sql =  "update sessao set ativo = 0 where cd_usuario = {$cd_usuario}";
+        $result = DBExecute($sql);
         return $result;
     }
 
+function  getQtPerguntas($cd_grupo)
+{
+  $sql =  "select count(cd_pergunta) as qt_perguntas from perguntagrupo where cd_grupo = {$cd_grupo}";
+  $result = DataReader($sql);
+  return $result[0]['qt_perguntas'];
+}
+
+function  getPorcentagemPerguntas($cd_grupo)
+{
+   $qt = getQtPerguntas($cd_grupo);
+   $value = (100 /50) * $qt;
+   return $value;
+}
 ?>
