@@ -118,11 +118,11 @@
   </form>
   </div>
   </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+  </div>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->  </body>
+
+
+ </body>
 </html>
 
 <script >

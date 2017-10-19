@@ -122,7 +122,7 @@ function carregaMeusGrupos(id){
 				    itens += "<td> "+ retorno[i].cdGrupo + "</td>";
                     itens += "<td>" + retorno[i].nm_grupo + "</td>";
                     itens += "<td> <button type=\"button\" onMouseOver=\"this.style.cursor='pointer'\" onclick=\"redirect('EditarGrupos?id="+retorno[i].cdGrupo+"')\" class=\"btn btn-primary\"><img src=\"images/eye.png\" width=\"25px\" height=\"25px\"/> Visualizar</button></td>";
-										itens +="<td><button type=\"button\" class=\"btn btn-danger\"><img src=\"images/remove.png\" width=\"25px\" height=\"25px\"/> Excluir</button></td>";
+										itens +="<td><button type=\"button\"   onMouseOver=\"this.style.cursor='pointer'\" onclick=\"removeGrupo("+retorno[i].cdGrupo+",'"+retorno[i].nm_grupo+"')\" class=\"btn btn-danger\"><img src=\"images/remove.png\" width=\"25px\" height=\"25px\"/> Excluir</button></td>";
 					  itens += "</tr>";
 			    }
 			    //Preencher a Tabela
@@ -204,6 +204,43 @@ function AddGrupo(cd_usuario, nome){
         },
 	    success: function(retorno) {
 							alert("Salvo com sucesso!");
+						//	console.log(Object.getOwnPropertyNames(retorno).sort());
+
+									location.reload();
+		    }
+
+
+    });
+}
+
+
+function removeGrupo(cd_grupo, nome){
+
+	var resp = confirm("Tem certeza que deseja remover o grupo "+ nome +"?");
+
+	if (resp==false) {
+		return;
+	}
+
+	var itens = "";
+    var url = window.location.protocol + "//" + window.location.host+'/api/grupo/remover?id='+cd_grupo;
+   // alert(url);
+    //Capturar Dados Usando Método AJAX do jQuery
+    $.ajax({
+	    url: url,
+	    cache: false,
+	    dataType: "json",
+	    beforeSend: function() {
+		   // $("h2").html("Carregando..."); //Carregando
+	    },
+      //  error: function (error) {
+					error: function(erro) {
+//  var err = eval("(" + xhr.responseText + ")");
+  alert("Ocorreu algum erro ao excluir");
+
+        },
+	    success: function(retorno) {
+							alert("Excluido com sucesso com sucesso!");
 									location.reload();
 		    }
 
